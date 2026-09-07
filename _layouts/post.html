@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<article class="post">
+  <p class="meta">Part {{ page.series_order }} of 3 · {{ page.date | date: "%-d %B %Y" }}</p>
+  {{ content }}
+  <hr>
+  <nav class="series">
+    <p class="meta">The series</p>
+    <ol>
+    {% assign ordered = site.posts | sort: "series_order" %}
+    {% for p in ordered %}
+      <li>{% if p.url == page.url %}<span class="here">{{ p.title }}</span>
+          {% else %}<a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% endif %}</li>
+    {% endfor %}
+    </ol>
+  </nav>
+</article>

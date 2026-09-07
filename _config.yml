@@ -1,0 +1,9 @@
+title: AgentCo
+description: >-
+  A contract in the middle, a coordination plane on one side, an execution
+  runtime on the other — notes on running more than one agent.
+url: ""
+baseurl: ""
+markdown: kramdown
+permalink: /:title/
+exclude: [README.md, Gemfile, Gemfile.lock, vendor]

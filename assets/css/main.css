@@ -1,0 +1,44 @@
+:root{
+  --bg:#fdfdfc; --fg:#1a1a18; --muted:#6b6b64; --rule:#e2e2dc;
+  --link:#1c4f8b; --code-bg:#f4f4f0;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#151514; --fg:#e6e6e0; --muted:#9a9a90; --rule:#2e2e2a;
+         --link:#8fb8e8; --code-bg:#1f1f1d; }
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+header.site,footer.site,main{max-width:68ch;margin:0 auto;padding:0 1.25rem}
+header.site{display:flex;justify-content:space-between;align-items:baseline;
+  padding-top:2rem;padding-bottom:2rem}
+.wordmark{font-weight:600;letter-spacing:-.01em;text-decoration:none;color:var(--fg)}
+nav a{color:var(--muted);text-decoration:none;font-size:.9rem}
+nav a:hover{color:var(--link)}
+a{color:var(--link)}
+h1{font-size:1.9rem;line-height:1.25;letter-spacing:-.02em;margin:.5rem 0 1.5rem}
+h2{font-size:1.25rem;letter-spacing:-.01em;margin:2.5rem 0 .75rem}
+p,li{overflow-wrap:break-word}
+.meta{color:var(--muted);font-size:.85rem;letter-spacing:.02em}
+hr{border:0;border-top:1px solid var(--rule);margin:3rem 0}
+code{background:var(--code-bg);padding:.1em .35em;border-radius:3px;font-size:.88em}
+pre{background:var(--code-bg);padding:1rem;border-radius:6px;overflow-x:auto;font-size:.85rem;line-height:1.5}
+pre code{background:none;padding:0;font-size:1em}
+/* tables scroll rather than break the measure */
+.table-wrap,table{display:block;overflow-x:auto;max-width:100%}
+table{border-collapse:collapse;font-size:.9rem;margin:1.5rem 0}
+th,td{border:1px solid var(--rule);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{font-weight:600;background:var(--code-bg)}
+blockquote{border-left:3px solid var(--rule);margin:1.5rem 0;padding-left:1rem;color:var(--muted)}
+ol.index{list-style:none;padding:0}
+ol.index li{border-top:1px solid var(--rule);padding:1.5rem 0}
+ol.index a{font-size:1.15rem;font-weight:600;text-decoration:none;letter-spacing:-.01em}
+ol.index p{margin:.4rem 0 0;color:var(--muted);font-size:.95rem}
+.series ol{padding-left:1.2rem}
+.here{color:var(--muted)}
+footer.site{border-top:1px solid var(--rule);margin-top:4rem;padding-top:1.5rem;
+  padding-bottom:3rem;color:var(--muted);font-size:.85rem}
+footer.site a{color:var(--muted)}
