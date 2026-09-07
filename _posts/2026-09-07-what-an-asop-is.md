@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What an ASOP Is"
-date: 2026-09-08
+date: 2026-09-07
 series_order: 1
 tags: [agentco, asop, agents, verification, open-source]
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What the Harness Is"
-date: 2026-09-08
+date: 2026-09-07
 series_order: 3
 tags: [agentco, runtime, beads, agents, open-source]
 ---

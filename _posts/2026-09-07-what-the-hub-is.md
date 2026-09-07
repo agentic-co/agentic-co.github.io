@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What the Hub Is"
-date: 2026-09-08
+date: 2026-09-07
 series_order: 2
 tags: [agentco, hub, coordination, multi-agent, open-source]
 ---
@@ -61,7 +61,7 @@ own silence first before it reports anyone else's.
 ## And it is where ASOPs live
 
 The organising idea is the ASOP — the versioned, verified, self-revising procedure
-from the [first post in this series]({% post_url 2026-09-08-what-an-asop-is %}). The Hub is the plane that stores them,
+from the [first post in this series]({% post_url 2026-09-07-what-an-asop-is %}). The Hub is the plane that stores them,
 versions them, records outcomes per version and per step, and routes their gates.
 
 The pieces that matter in practice:
