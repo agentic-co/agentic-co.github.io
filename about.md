@@ -8,7 +8,7 @@ permalink: /about/
 
 **[ASOP](https://github.com/mabidoli/asop)** is a procedure standard for agentic
 work: versioned, verified, self-revising. It is a specification plus a
-dependency-free reference package (`pip install asop`), owned by no product.
+dependency-free reference package (`pip install asop-spec`), owned by no product.
 
 **Agentic Co** builds two open-source implementations of it.
 
