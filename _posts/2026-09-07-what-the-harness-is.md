@@ -87,7 +87,8 @@ actually ran.
 
 It never files work on the plane. Publishing is off, deliberately: the plane owns
 the queue. And a plane that is unreachable is a plane that is advisory, so a
-failed report is retried by a later sweep and the bead is done locally regardless.
+failed report can be retried by a later `agentic-co hub sync` sweep and the bead
+is done locally regardless.
 
 We found a real defect building this, and it is a good illustration of why you
 run the thing rather than reason about it.

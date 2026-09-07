@@ -56,7 +56,7 @@ There are three kinds, and their trust models are genuinely different:
 | kind | proof | trust model |
 |---|---|---|
 | `deterministic` | a command exits zero, re-run fresh by the completing process | machine-checkable, but the executor attests its own result. A trust floor, not a proof. |
-| `judged` | a fixed rubric, answered by a declared verifier | the operator declares who may judge. Claiming the capability is not the authority. |
+| `judged` | a fixed rubric, answered by a route other than the executor | the operator declares who may judge. Claiming the capability is not the authority. |
 | `human` | a named person signs off | one named person's judgement, and nobody else's |
 
 The subtle design decision is *where* the gate is authored. In the obvious design,

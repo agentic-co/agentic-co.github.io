@@ -47,7 +47,7 @@ deliberate boundary: a coordination plane that accumulates copies of your
 specifications becomes a data-governance conversation, and that conversation kills
 adoption faster than any missing feature.
 
-## Three: a router that puts a decision in front of a named human
+## Three: a router that names the human a decision belongs to
 
 The failure that costs the most is the quietest. An agent hits a question it
 cannot answer, asks, and nothing carries the question anywhere. The work stalls
@@ -57,6 +57,12 @@ So a human gate names the person who answers it, the wait is on a clock, and a
 step that has been ready past its actor's declared cadence with nobody pulling it
 becomes an explicit finding that names the actor and the wait. The Hub judges its
 own silence first before it reports anyone else's.
+
+What it does not yet do is *push*. A parked gate is a queue entry and an event on
+the change feed; unless the item was mirrored from an external record and
+write-back is switched on, reaching it still means going to look. That gap is
+named in the docs rather than papered over, because it is the largest one
+between this and the failure the section opens with.
 
 ## And it is where ASOPs live
 
@@ -74,10 +80,13 @@ The pieces that matter in practice:
   never pull, so filing work for it is filing into a void.
 - **A run closes when its steps do**, in the same transaction that lands the last
   one. Only `done` counts, so a parked gate holds the run open honestly.
-- **Who may verify and who may judge are declared by the operator**, in
-  configuration, not claimed in a request payload. Undeclared adjudicators fail
-  closed to humans, on the reasoning that what degrades when that fails open is
-  the evidence base itself.
+- **Who may judge is declared by the operator**, in configuration, not claimed
+  in a request payload. Undeclared adjudicators fail closed to humans, on the
+  reasoning that what degrades when that fails open is the evidence base itself.
+  Verification sits a rung below that by default: the `verify` capability is
+  asserted by the caller, so on its own it is routing hygiene rather than
+  authority — it stops a node answering gates it was never configured for, and
+  nothing more. Naming the verifiers explicitly is what turns it into a rail.
 - **Bindings come from the caller.** The plane never invents one.
 
 ## The participation ladder
