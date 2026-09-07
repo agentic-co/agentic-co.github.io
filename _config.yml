@@ -4,6 +4,13 @@ description: >-
   runtime on the other — notes on running more than one agent.
 url: ""
 baseurl: ""
+author:
+  name: Marcelo Bidoli Fernandes
+  github: mabidoli
+
+plugins:
+  - jekyll-feed
+
 markdown: kramdown
 permalink: /:title/
 exclude: [README.md, Gemfile, Gemfile.lock, vendor]

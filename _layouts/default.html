@@ -13,9 +13,11 @@
 </header>
 <main>{{ content }}</main>
 <footer class="site">
-  <p>Apache-2.0 ·
+  <p>By <a href="https://github.com/{{ site.author.github }}">{{ site.author.name }}</a> · Apache-2.0 ·
+  <a href="https://github.com/mabidoli/asop">ASOP</a> ·
   <a href="https://github.com/agentic-co/agentic-co-hub">Hub</a> ·
-  <a href="https://github.com/agentic-co/agentic-co-harness">Harness</a></p>
+  <a href="https://github.com/agentic-co/agentic-co-harness">Harness</a> ·
+  <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
 </footer>
 </body>
 </html>

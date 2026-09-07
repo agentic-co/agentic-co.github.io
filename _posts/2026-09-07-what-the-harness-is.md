@@ -134,15 +134,20 @@ executed the step is refused, and even the declared verifier is refused if it do
 not claim the capability. Three refusals, then one verdict. A gate you can only
 observe passing is not a gate.
 
-## Two products, one contract
+## One standard, two implementations
 
 The Hub and the Harness are separate repositories with separate suites, and they
-share exactly one thing: the ASOP contract package. The Harness depends on it
-without depending on the Hub. Nothing in the Harness imports the plane.
+share exactly one thing: [the ASOP contract](https://github.com/mabidoli/asop),
+which is a third repository owned by neither of them. The Harness depends on it
+without depending on the Hub — at the import level, and now at the packaging
+level too, which is a distinction worth being honest about. For a while the
+runtime installed the contract from the Hub's repository URL, so the sentence was
+true of the code and false of the install. Moving the specification out is what
+made both true at once.
 
-That is the whole architecture. A contract in the middle, a coordination plane on
-one side, an execution runtime on the other, and a deliberate refusal to make
-either one require the other.
+That is the whole architecture. A standard in the middle, a coordination plane on
+one side, an execution runtime on the other, and a deliberate refusal to make any
+of the three require another.
 
 Both are public and Apache-2.0. If you are running more than one agent and you
 have started to feel the coordination cost, start with the contract and see
