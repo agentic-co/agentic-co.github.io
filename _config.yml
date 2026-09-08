@@ -2,7 +2,7 @@ title: AgentCo
 description: >-
   A contract in the middle, a coordination plane on one side, an execution
   runtime on the other — notes on running more than one agent.
-url: ""
+url: "https://agentic-co.github.io"
 baseurl: ""
 author:
   name: Marcelo Bidoli Fernandes
@@ -10,6 +10,7 @@ author:
 
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 markdown: kramdown
 permalink: /:title/

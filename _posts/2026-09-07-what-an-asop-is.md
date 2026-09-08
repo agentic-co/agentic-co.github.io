@@ -3,6 +3,7 @@ layout: post
 title: "What an ASOP Is"
 date: 2026-09-07
 series_order: 1
+description: "An SOP tells an agent what to do. An ASOP can prove it was done — versioned, gated by its author, and revised from the evidence its own runs produce."
 tags: [agentco, asop, agents, verification, open-source]
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "What the Hub Is"
 date: 2026-09-07
 series_order: 2
+description: "Everyone on the team runs a different agent and nobody is giving theirs up. The Hub coordinates them without asking anyone to standardise on one tool."
 tags: [agentco, hub, coordination, multi-agent, open-source]
 ---
 

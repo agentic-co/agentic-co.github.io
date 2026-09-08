@@ -3,6 +3,7 @@ layout: post
 title: "What the Harness Is"
 date: 2026-09-07
 series_order: 3
+description: "The Hub coordinates and never executes. The Harness is the runtime that does the work: a local store, a heartbeat cycle, and humans as first-class assignees."
 tags: [agentco, runtime, beads, agents, open-source]
 ---
 
