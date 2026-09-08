@@ -139,8 +139,8 @@ tomorrow's procedure.
 An ASOP is not a framework you adopt or a vendor you pick. It is a contract: a
 gate schema, a record shape, and a refusal vocabulary. The specification and its
 reference implementation live in [their own repository](https://github.com/mabidoli/asop)
-and install as `asop` — standard library only, depending on no plane, no runtime
-and no vendor.
+and install as `asop-spec` — importable as `asop`, standard library only, depending
+on no plane, no runtime and no vendor.
 
 It does name the two implementations whose gate schemas it reconciles, and
 deliberately so. A standard that hides which systems it was derived from is
