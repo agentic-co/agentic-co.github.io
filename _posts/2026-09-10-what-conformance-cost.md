@@ -3,7 +3,7 @@ layout: post
 title: "What Conformance Cost"
 date: 2026-09-10
 series_order: 4
-description: "We made a runtime obey the contract it was co-designed with. Six divergences, two holes, and the one that mattered most was the one that returned success."
+description: "We made a runtime obey the contract it was co-designed with. Six divergences and three holes — and the one that mattered most was the one that returned success."
 tags: [agentco, asop, conformance, verification, open-source]
 ---
 
@@ -78,9 +78,9 @@ and the decision is invisible in the diff that makes it.
 So our own `annotate` refuses the key outright rather than reproducing the
 plane's behaviour faithfully. Fidelity to a trap is not fidelity.
 
-## Two holes, found by conforming
+## The holes conformance found
 
-Neither was reachable by a test that asserts success.
+None of these was reachable by a test that asserts success.
 
 **A verb reached done past a pinned gate.** `retire` exists to close work items
 that became moot — routing vehicles nobody is working. It checks for a live
@@ -100,6 +100,24 @@ so a report at attempt zero satisfied the fence and completed. On a gated item i
 landed `awaiting_verify` with an executor of `None` — and the separation check on
 a judged gate compares the verifier against the executor, so it compared against
 nothing.
+
+**Both are fixed.** `retire` now refuses a gated item outright (`gate_pinned`),
+and a completion is refused unless the store can name who executed it. That
+second one is stated as "no recorded executor" rather than the plane's "no
+lease", for a reason worth its own section below.
+
+And a third, of the same family: the runtime had a `verify_gate=False`
+parameter — an honest, code-reviewable bypass for callers who had already
+vouched for a result. Honest did not make it less of a bypass, and it meant the
+real invariant was "no *ordinary* path reaches DONE ungated". It is gone. A
+gated item now reaches DONE only when its record carries an attestation that
+survives re-checking at the choke point: authenticated verifier, distinct from
+the executor, carrying a verdict.
+
+That last detail is the whole trick. Moving evidence out of a parameter and
+into the record is only an improvement if the record is not simply believed —
+the record travels in metadata, and metadata arrives from the caller. Trusting
+it because it is *present* would be the same bypass with a longer name.
 
 ## One pattern, three times
 
@@ -171,19 +189,40 @@ bug is the point. A refusal code that exists only in one implementation is the
 same shape as the clock fields and the silent drop: a rule living in one
 codebase's head. Nobody else inherits it.
 
-## Where the two implementations now disagree, on purpose
+## Where the two implementations still disagree
 
 The runtime authenticates verifiers against a declared registry, and fails
 **closed**: an unset registry authenticates nobody. The spec says so twice.
 
-The plane fails **open**, deliberately, with a real argument — a registry where
-nobody may verify does not become safer, it resolves every judged gate on the
-clock, which is work approved on a timer.
+The plane fails **open**, and had an argument for it — a registry where nobody
+may verify does not become safer, it resolves every judged gate on the clock,
+which is work approved on a timer.
 
-We implemented the spec on the runtime side and wrote both positions down next to
-each other. That turns a latent contradiction into a dated one, which is the most
-useful thing you can do with a disagreement you are not yet entitled to settle.
-It belongs in the standard, not in whichever file gets edited last.
+**We checked the argument, and it does not hold.** It conflates two independent
+mechanisms. The clock path is a sweep that calls `resolve_by_default`, and that
+never goes near `attest`. Refusing an unauthenticated attester cannot make the
+timer fire more often. The timer hazard is real, and it is already handled
+somewhere else entirely: a clock resolution grants no evidence, leaves the
+attestation untouched, writes a record saying no check was run, and gets
+reported in aggregate.
+
+So failing closed is safe. It is still not *done*, because it is a contract
+change rather than a patch, and we measured what it costs rather than guessing:
+authenticating the attester fails 102 tests outright; declaring a verifier set
+in the shared fixtures brings that to 23 across six files; and the remainder
+reach all three transports and the conformance harness itself.
+
+One thing we tried and reverted, because the tests taught us something: refusing
+to *file* a judged gate with `on_timeout: pass` while no registry is declared
+looks like the tidy companion fix. It is not. That configuration is supported on
+purpose and pinned by tests with names like *a queue approving itself on a timer
+says so loudly*. The design there is detect-and-report-in-aggregate, not
+prevent. Changing it is a different product decision and deserves its own
+argument.
+
+The disagreement is dated and written down in both trees, which is the most
+useful thing you can do with a question that belongs in the standard rather than
+in whichever file gets edited last.
 
 ---
 
