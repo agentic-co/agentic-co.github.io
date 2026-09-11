@@ -4,9 +4,10 @@ layout: default
 
 # Running more than one agent
 
-Three posts on the layer that appears once an organisation has several agentic
+Notes on the layer that appears once an organisation has several agentic
 harnesses and no shared definition of done: a contract, a coordination plane,
-and an execution runtime.
+and an execution runtime — then what it cost to make one of them actually obey
+the other.
 
 <ol class="index">
 {% assign ordered = site.posts | sort: "series_order" %}
