@@ -2,7 +2,11 @@
 layout: default
 ---
 <article class="post">
-  <p class="meta">Part {{ page.series_order }} of 3 · by <a href="https://github.com/{{ site.author.github }}">{{ site.author.name }}</a> · {{ page.date | date: "%-d %B %Y" }}</p>
+  {%- comment -%} Counted, not typed. It said "of 3" through the fourth post,
+  because a number written by hand in a layout is a fact nobody is reminded
+  to update — every post after the first is the moment it goes stale.
+  {%- endcomment -%}
+  <p class="meta">Part {{ page.series_order }} of {{ site.posts | size }} · by <a href="https://github.com/{{ site.author.github }}">{{ site.author.name }}</a> · {{ page.date | date: "%-d %B %Y" }}</p>
   {{ content }}
   <hr>
   <nav class="series">
