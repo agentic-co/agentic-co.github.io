@@ -1,4 +1,4 @@
-# AgentCo blog
+# Agentic Co blog
 
 Jekyll, built natively by GitHub Pages — no CI step, no plugins outside the
 `github-pages` allowlist. Pushing to the default branch publishes it.

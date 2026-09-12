@@ -24,7 +24,7 @@ fallbacks, so a blocked request degrades rather than breaks.
 </head>
 <body>
 <header class="site">
-  <a class="wordmark" href="{{ '/' | relative_url }}">
+  <a class="wordmark" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}">
     {%- comment -%}
     Inlined rather than <img>, so the bars can take currentColor and flip with
     the ground while the gates stay Attest. A single file cannot do both.
@@ -40,7 +40,13 @@ fallbacks, so a blocked request degrades rather than breaks.
       <rect class="bar"  x="19" y="46" width="26" height="8"  rx="1"/>
       <rect class="gate" x="48" y="46" width="8"  height="8"  rx="1"/>
     </svg>
-    <span>{{ site.title }}</span>
+    {%- comment -%}
+    The wordmark is set, not written: lowercase, mono, with the gate square as
+    the separator — the same glyph as the mark, which is what ties the two
+    together. site.title carries the readable name for the tab, the feed and
+    og:site_name; here it is the accessible name instead.
+    {%- endcomment -%}
+    <span aria-hidden="true">agentic<i class="sep"></i>co</span>
   </a>
   <nav><a href="{{ '/about/' | relative_url }}">About</a></nav>
 </header>

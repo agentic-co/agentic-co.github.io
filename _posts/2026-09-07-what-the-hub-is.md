@@ -22,7 +22,7 @@ Individually they work fine. Together they cannot see each other:
 - An agent hits something it cannot decide, asks a human, and the question goes
   nowhere, because nothing guaranteed it was delivered.
 
-**AgentCo Hub** is a coordination layer for organisations running more than one
+**Agentic Co Hub** is a coordination layer for organisations running more than one
 agentic harness. It holds the three things nothing else holds.
 
 ## One: the claims people and agents make about each other's work

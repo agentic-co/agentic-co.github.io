@@ -1,4 +1,4 @@
-/* AgentCo — site styles. Requires ../tokens.css and ../components.css.
+/* Agentic Co — site styles. Requires ../tokens.css and ../components.css.
  *
  * Everything here is a binding of the brand tokens to this site's elements;
  * no colour, size or space is chosen locally. If a value looks like it wants
@@ -53,6 +53,21 @@ header.site {
 .wordmark svg { display: block; flex: none; }
 .wordmark .bar  { fill: currentColor; }
 .wordmark .gate { fill: var(--ac-verdict-pass); }
+/* The separator between "agentic" and "co" is a gate, borrowed from the mark.
+ * It is the one place Attest appears in running text, and it earns it by being
+ * the same glyph the mark uses — not an accent, a quotation. */
+.wordmark span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32em;
+}
+.wordmark .sep {
+  width: 0.36em;
+  height: 0.36em;
+  border-radius: 1px;
+  background: var(--ac-verdict-pass);
+  display: block;
+}
 
 nav a {
   color: var(--ac-fg-muted);
