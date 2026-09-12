@@ -8,11 +8,16 @@ author:
   name: Marcelo Bidoli Fernandes
   github: mabidoli
 
-# Default social card. jekyll-seo-tag emits it as og:image / twitter:image;
-# a post can override with `image:` in its front matter.
-image: /assets/brand/og.png
-twitter:
-  card: summary_large_image
+# Default social card. jekyll-seo-tag reads `page.image`, NOT a site-level
+# `image:` key — setting it at the top level emits nothing at all, silently.
+# A `defaults` block puts it on every page instead, and seo-tag upgrades the
+# Twitter card to summary_large_image on its own once an image is present.
+# A post overrides it with `image:` in its own front matter.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/brand/og.png
 
 plugins:
   - jekyll-feed
