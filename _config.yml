@@ -8,6 +8,12 @@ author:
   name: Marcelo Bidoli Fernandes
   github: mabidoli
 
+# Default social card. jekyll-seo-tag emits it as og:image / twitter:image;
+# a post can override with `image:` in its front matter.
+image: /assets/brand/og.png
+twitter:
+  card: summary_large_image
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

@@ -4,11 +4,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% seo %}
+<link rel="icon" href="{{ '/assets/brand/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="icon" href="{{ '/assets/brand/icon-32.png' | relative_url }}" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ '/assets/brand/icon-180.png' | relative_url }}">
+<meta name="theme-color" content="#FAF9F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121620" media="(prefers-color-scheme: dark)">
+{%- comment -%}
+The brand names Inter and IBM Plex Mono; neither is on a visitor's machine.
+Loaded with display=swap and only the weights actually used, so the page paints
+in the system fallbacks and never blocks on them. tokens.css lists those
+fallbacks, so a blocked request degrades rather than breaks.
+{%- endcomment -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="{{ '/assets/tokens.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/components.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 <body>
 <header class="site">
-  <a class="wordmark" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <a class="wordmark" href="{{ '/' | relative_url }}">
+    {%- comment -%}
+    Inlined rather than <img>, so the bars can take currentColor and flip with
+    the ground while the gates stay Attest. A single file cannot do both.
+    Three bars at 40px — the minimum size in BRAND.md, below which they close
+    into a smudge.
+    {%- endcomment -%}
+    <svg width="40" height="40" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <rect class="bar"  x="8"  y="8"  width="7"  height="48" rx="1"/>
+      <rect class="bar"  x="19" y="10" width="26" height="8"  rx="1"/>
+      <rect class="gate" x="48" y="10" width="8"  height="8"  rx="1"/>
+      <rect class="bar"  x="19" y="28" width="26" height="8"  rx="1"/>
+      <rect class="gate" x="48" y="28" width="8"  height="8"  rx="1"/>
+      <rect class="bar"  x="19" y="46" width="26" height="8"  rx="1"/>
+      <rect class="gate" x="48" y="46" width="8"  height="8"  rx="1"/>
+    </svg>
+    <span>{{ site.title }}</span>
+  </a>
   <nav><a href="{{ '/about/' | relative_url }}">About</a></nav>
 </header>
 <main>{{ content }}</main>

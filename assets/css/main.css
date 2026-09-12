@@ -1,44 +1,186 @@
-:root{
-  --bg:#fdfdfc; --fg:#1a1a18; --muted:#6b6b64; --rule:#e2e2dc;
-  --link:#1c4f8b; --code-bg:#f4f4f0;
+/* AgentCo — site styles. Requires ../tokens.css and ../components.css.
+ *
+ * Everything here is a binding of the brand tokens to this site's elements;
+ * no colour, size or space is chosen locally. If a value looks like it wants
+ * to be a literal, it belongs in tokens.css instead.
+ *
+ * One rule shows up as an absence: links are not coloured. The identity has a
+ * single accent and it is reserved for verdicts (BRAND.md § Palette), so a
+ * blue link would be the first thing to break it. Underlines carry the job,
+ * which is what they were for.
+ */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ac-bg);
+  color: var(--ac-fg);
+  font: var(--ac-text-base)/var(--ac-leading-body) var(--ac-font-sans);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 }
-@media (prefers-color-scheme: dark){
-  :root{ --bg:#151514; --fg:#e6e6e0; --muted:#9a9a90; --rule:#2e2e2a;
-         --link:#8fb8e8; --code-bg:#1f1f1d; }
+
+header.site, footer.site, main {
+  max-width: var(--ac-measure);
+  margin: 0 auto;
+  padding: 0 var(--ac-space-5);
 }
-*{box-sizing:border-box}
-body{
-  margin:0; background:var(--bg); color:var(--fg);
-  font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-  -webkit-text-size-adjust:100%;
+
+/* ── masthead ───────────────────────────────────────────────────── */
+
+header.site {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--ac-space-6);
+  padding-bottom: var(--ac-space-6);
 }
-header.site,footer.site,main{max-width:68ch;margin:0 auto;padding:0 1.25rem}
-header.site{display:flex;justify-content:space-between;align-items:baseline;
-  padding-top:2rem;padding-bottom:2rem}
-.wordmark{font-weight:600;letter-spacing:-.01em;text-decoration:none;color:var(--fg)}
-nav a{color:var(--muted);text-decoration:none;font-size:.9rem}
-nav a:hover{color:var(--link)}
-a{color:var(--link)}
-h1{font-size:1.9rem;line-height:1.25;letter-spacing:-.02em;margin:.5rem 0 1.5rem}
-h2{font-size:1.25rem;letter-spacing:-.01em;margin:2.5rem 0 .75rem}
-p,li{overflow-wrap:break-word}
-.meta{color:var(--muted);font-size:.85rem;letter-spacing:.02em}
-hr{border:0;border-top:1px solid var(--rule);margin:3rem 0}
-code{background:var(--code-bg);padding:.1em .35em;border-radius:3px;font-size:.88em}
-pre{background:var(--code-bg);padding:1rem;border-radius:6px;overflow-x:auto;font-size:.85rem;line-height:1.5}
-pre code{background:none;padding:0;font-size:1em}
-/* tables scroll rather than break the measure */
-.table-wrap,table{display:block;overflow-x:auto;max-width:100%}
-table{border-collapse:collapse;font-size:.9rem;margin:1.5rem 0}
-th,td{border:1px solid var(--rule);padding:.5rem .7rem;text-align:left;vertical-align:top}
-th{font-weight:600;background:var(--code-bg)}
-blockquote{border-left:3px solid var(--rule);margin:1.5rem 0;padding-left:1rem;color:var(--muted)}
-ol.index{list-style:none;padding:0}
-ol.index li{border-top:1px solid var(--rule);padding:1.5rem 0}
-ol.index a{font-size:1.15rem;font-weight:600;text-decoration:none;letter-spacing:-.01em}
-ol.index p{margin:.4rem 0 0;color:var(--muted);font-size:.95rem}
-.series ol{padding-left:1.2rem}
-.here{color:var(--muted)}
-footer.site{border-top:1px solid var(--rule);margin-top:4rem;padding-top:1.5rem;
-  padding-bottom:3rem;color:var(--muted);font-size:.85rem}
-footer.site a{color:var(--muted)}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ac-space-3);
+  text-decoration: none;
+  color: var(--ac-fg);
+  font-family: var(--ac-font-mono);
+  font-weight: var(--ac-weight-semi);
+  font-size: var(--ac-text-xl);
+  letter-spacing: var(--ac-tracking-display);
+}
+/* The mark is drawn inline so it inherits currentColor for the bars and keeps
+ * the gates in Attest — a single file cannot do that across both grounds. */
+.wordmark svg { display: block; flex: none; }
+.wordmark .bar  { fill: currentColor; }
+.wordmark .gate { fill: var(--ac-verdict-pass); }
+
+nav a {
+  color: var(--ac-fg-muted);
+  text-decoration: none;
+  font-size: var(--ac-text-sm);
+}
+nav a:hover { color: var(--ac-fg); }
+
+/* ── prose ──────────────────────────────────────────────────────── */
+
+a {
+  color: var(--ac-link);
+  text-decoration: underline;
+  text-decoration-color: var(--ac-link-underline);
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 1px;
+}
+a:hover { text-decoration-color: currentColor; }
+a:focus-visible { outline: 2px solid var(--ac-fg); outline-offset: 2px; border-radius: 2px; }
+
+h1 {
+  font-size: var(--ac-text-2xl);
+  line-height: var(--ac-leading-tight);
+  letter-spacing: var(--ac-tracking-display);
+  font-weight: var(--ac-weight-bold);
+  margin: var(--ac-space-2) 0 var(--ac-space-5);
+}
+h2 {
+  font-size: var(--ac-text-xl);
+  line-height: var(--ac-leading-snug);
+  letter-spacing: var(--ac-tracking-tight);
+  font-weight: var(--ac-weight-semi);
+  margin: var(--ac-space-7) 0 var(--ac-space-3);
+}
+h3 {
+  font-size: var(--ac-text-lg);
+  font-weight: var(--ac-weight-semi);
+  letter-spacing: var(--ac-tracking-tight);
+  margin: var(--ac-space-6) 0 var(--ac-space-2);
+}
+
+p, li { overflow-wrap: break-word; }
+
+/* Bylines, dates and section labels are the site talking about itself —
+ * mono, like everything a system emits. */
+.meta {
+  font-family: var(--ac-font-mono);
+  color: var(--ac-fg-muted);
+  font-size: var(--ac-text-xs);
+  letter-spacing: var(--ac-tracking-tight);
+}
+.meta a { color: var(--ac-fg-muted); }
+
+hr { border: 0; border-top: 1px solid var(--ac-rule); margin: var(--ac-space-7) 0; }
+
+code {
+  font-family: var(--ac-font-mono);
+  background: var(--ac-surface);
+  padding: 0.1em 0.35em;
+  border-radius: var(--ac-radius-sm);
+  font-size: 0.88em;
+}
+pre {
+  font-family: var(--ac-font-mono);
+  background: var(--ac-surface);
+  border: 1px solid var(--ac-rule);
+  padding: var(--ac-space-4);
+  border-radius: var(--ac-radius-md);
+  overflow-x: auto;
+  font-size: var(--ac-text-sm);
+  line-height: var(--ac-leading-snug);
+}
+pre code { background: none; padding: 0; font-size: 1em; }
+
+/* Tables scroll rather than break the measure. */
+.table-wrap, table { display: block; overflow-x: auto; max-width: 100%; }
+table {
+  border-collapse: collapse;
+  font-size: var(--ac-text-sm);
+  margin: var(--ac-space-5) 0;
+}
+th, td {
+  border: 1px solid var(--ac-rule);
+  padding: var(--ac-space-2) var(--ac-space-3);
+  text-align: left;
+  vertical-align: top;
+}
+th { font-weight: var(--ac-weight-semi); background: var(--ac-surface); }
+
+blockquote {
+  border-left: 3px solid var(--ac-rule);
+  margin: var(--ac-space-5) 0;
+  padding-left: var(--ac-space-4);
+  color: var(--ac-fg-muted);
+}
+
+/* ── index ──────────────────────────────────────────────────────── */
+
+ol.index { list-style: none; padding: 0; }
+ol.index li { border-top: 1px solid var(--ac-rule); padding: var(--ac-space-5) 0; }
+ol.index a {
+  font-size: var(--ac-text-lg);
+  font-weight: var(--ac-weight-semi);
+  letter-spacing: var(--ac-tracking-tight);
+  text-decoration: none;
+}
+ol.index a:hover { text-decoration: underline; text-decoration-color: var(--ac-link-underline); }
+ol.index p { margin: var(--ac-space-2) 0 0; color: var(--ac-fg-muted); font-size: var(--ac-text-sm); }
+
+.series ol { padding-left: var(--ac-space-5); }
+.series li { margin: var(--ac-space-1) 0; }
+.here { color: var(--ac-fg-muted); }
+
+/* ── footer ─────────────────────────────────────────────────────── */
+
+footer.site {
+  border-top: 1px solid var(--ac-rule);
+  margin-top: var(--ac-space-8);
+  padding-top: var(--ac-space-5);
+  padding-bottom: var(--ac-space-7);
+  color: var(--ac-fg-muted);
+}
+/* Type goes on the paragraph, not the container. --ac-measure is in ch, so a
+ * container that shrinks its own font-size also shrinks its own max-width and
+ * silently stops aligning with the rest of the page. */
+footer.site p {
+  margin: 0;
+  font-family: var(--ac-font-mono);
+  font-size: var(--ac-text-xs);
+}
+footer.site a { color: var(--ac-fg-muted); }
