@@ -3,11 +3,11 @@ layout: post
 title: "What an ASOP Is"
 date: 2026-09-07
 series_order: 1
-description: "An SOP tells an agent what to do. An ASOP can prove it was done — versioned, gated by its author, and revised from the evidence its own runs produce."
+description: "An SOP tells an agent what to do. An ASOP proves it was done — and gets better because of it. Versioned, gated by its author, revised from the evidence its own runs produce, and handed to a person when a gate cannot pass."
 tags: [agentco, asop, agents, verification, open-source]
 ---
 
-# An SOP tells an agent what to do. An ASOP can prove it was done.
+# An SOP tells an agent what to do. An ASOP proves it was done — and gets better because of it.
 
 Every team running AI agents ends up writing procedures for them. You call it a
 prompt, a playbook, a `CLAUDE.md`, a runbook. It says: read the requirement,
@@ -28,6 +28,24 @@ the result is proven, where the result is written, and which role does it.
 
 A procedure is an ASOP when it has three properties. Missing one, it is
 documentation.
+
+Before the three: what they are *for*. Proof is not the destination. Almost
+every organisation already has procedures — written down, or carried in
+somebody's head — and the expensive thing about them is not that they are
+unproven. It is that they never improve. The same failure recurs because
+nothing localised it, nobody adjudicated it, and no version of the procedure
+changed as a result.
+
+The three properties exist to close that loop. Versioning gives a revision
+something to attach outcomes to. Gating localises a failure to a step instead
+of a run. Self-revision turns that localised failure into the next version. And
+when a step cannot pass its gate, the work escalates to a person — not as a
+fallback for when the system breaks, but as the designed answer to "this could
+not be verified". An agent proceeding unverified is the failure; a human being
+asked is the procedure working.
+
+Convert, execute, evolve — and escalate when you cannot. That is the whole
+claim.
 
 ## Versioned: outcomes attach to versions, not to vibes
 
