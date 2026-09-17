@@ -21,6 +21,11 @@ fallbacks, so a blocked request degrades rather than breaks.
 <link rel="stylesheet" href="{{ '/assets/tokens.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/components.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+{%- comment -%}
+Cookieless pageview/referrer analytics (ac-b8cef7a5) — no cookies, no consent banner,
+matches the site's own argument that claims need evidence.
+{%- endcomment -%}
+<script data-goatcounter="https://mabidoli.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <header class="site">
