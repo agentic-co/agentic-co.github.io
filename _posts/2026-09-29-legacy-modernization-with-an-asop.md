@@ -3,7 +3,7 @@ layout: post
 title: "Legacy Modernization with an ASOP"
 date: 2026-09-29
 series_order: 5
-description: "Two slices of a real legacy .NET Framework app, ported to .NET 10 under a versioned, gated procedure. It found a real production bug — and caught two of its own fake-green runs along the way."
+description: "Two slices of a real legacy .NET Framework app, ported to .NET 10 under a versioned, gated procedure. It found a real legacy bug — and caught two of its own fake-green runs along the way."
 tags: [agentco, asop, legacy-modernization, strangler-fig, verification, open-source]
 image: /assets/legacy-modernization-hero.png
 ---
@@ -72,10 +72,10 @@ The procedure's own steps cost more, and produced three incidents worth
 naming.
 
 **A gate-proof that proved nothing.** To confirm the legacy CI gate
-actually fires red, I broke a test's assertion on purpose and pushed it.
-CI came back green. The test I'd "broken" wasn't in the project's
+actually fires red, the agent broke a test's assertion on purpose and pushed it.
+CI came back green. The test it had "broken" wasn't in the project's
 `.csproj` compile list at all — dead code in the tree. The gate wasn't
-broken; my proof was. A green run isn't evidence of anything unless you've
+broken; the proof was. A green run isn't evidence of anything unless you've
 independently confirmed the thing you changed was in the path that ran.
 
 **Four wrong guesses before the real one.** A new test project reference
@@ -89,7 +89,7 @@ plausible — which is exactly why "plausible" isn't a stopping condition.
 
 **A serializer quirk no amount of trying fixed.** The RSS XML matched
 byte-for-byte except two auto-generated namespace declarations came out in
-the opposite order from the legacy build. Every insertion order I tried on
+the opposite order from the legacy build. Every insertion order the agent tried on
 .NET 10 produced the identical (wrong) result — proof the ordering is
 hardcoded in .NET 10's `XmlSerializer`, not caller-controlled. The fix
 wasn't a smarter order; it was normalizing the difference after the fact,
@@ -97,8 +97,8 @@ with the reasoning written down next to the code.
 
 Slice 1 finished green — legacy suite at 48 tests, the .NET 10 port passing
 on the first CI attempt after iterating locally. Two bad divergences went
-into `ADJUDICATION.md`, the sharpest being that I executed steps 2 through
-6 while step 1's human gate was still open. That became v2's input.
+into `ADJUDICATION.md`, the sharpest being that the agent executed steps 2
+through 6 while step 1's human gate (my review) was still open. That became v2's input.
 
 ## v2, self-revision, and the Akismet bug
 
@@ -149,7 +149,7 @@ than a green test is. You have to check the artifact, not the exit code.
 
 | | Slice | CI iterations (steps 3 / 4) | Bad divergences | Good divergences | Bugs found |
 |---|---|---|---|---|---|
-| v1 | feed | 14 / 1 | 2 | 1 | 0 |
+| v1 | feed | 14 / 1 | 2 | 1 | 1 (a dead `/atom.ashx` rewrite, found while mapping) |
 | v2 | spam | 4 / 1 | 1 (new) | 3 | 1 (real, reproduced faithfully) |
 
 It's tempting to read 14-versus-4 as "v2 is 3.5x faster." That's not good
@@ -163,7 +163,7 @@ Smaller claim, but the evidence backs it.
 ## What didn't work, and what's next
 
 **No independent adjudicator** — every divergence above was self-adjudicated,
-me arguing about my own run. Disclosed as a limitation, not a result I'm
+the executing agent judging its own run. Disclosed as a limitation, not a result I'm
 proud of. **"Green means nothing" recurred one level up the stack than
 expected** — first a dead test, then a whole CI workflow — so v3's proposal
 generalizes the rule: a workflow claiming to have produced an artifact
@@ -183,7 +183,7 @@ Anyone can point an agent at legacy code and get something that runs. The
 narrower, more falsifiable claim is that the *procedure* catches the agent,
 not just the codebase. It caught a fake gate-proof. It caught a workflow
 lying about its own output, twice, two different ways. It caught a real bug
-sitting in production code, unnoticed, because nobody had run it against
+sitting in shipped code, unnoticed, because nobody had run it against
 the one input that mattered. None of that was the agent being smart. It was
 the gates doing the one job gates have — refusing to call something done
 until a machine re-checks it.
